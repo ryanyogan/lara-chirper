@@ -2,8 +2,9 @@ import { Head, useForm } from "@inertiajs/react";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import InputError from "@/Components/InputError";
 import PrimaryButton from "@/Components/PrimaryButton";
+import Chirp from "@/Components/chirp";
 
-export default function Index({ auth }) {
+export default function Index({ auth, chirps }) {
   const form = useForm({ message: "" });
 
   const submit = (e) => {
@@ -28,6 +29,12 @@ export default function Index({ auth }) {
             Chirp
           </PrimaryButton>
         </form>
+
+        <div className="mt-6 bg-white shadow-sm rounded-lg divide-y">
+          {chirps.map((chirp) => (
+            <Chirp key={chirp.id} chirp={chirp} />
+          ))}
+        </div>
       </div>
     </AuthenticatedLayout>
   );
